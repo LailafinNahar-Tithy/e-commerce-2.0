@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'welcome';
+
     return view('welcome');
 });
+Route::get('/about-us', [PublicController::class,'about'])->name('about');
+Route::get('/contact',[PublicController::class,'contact']);
