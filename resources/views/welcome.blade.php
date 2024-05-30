@@ -12,6 +12,7 @@
         <a href="{{url('/home')}}">Home</a>
         <a href="{{url('/contact')}}">Contact us</a>
         <a href="{{route('about')}}">About us</a>
+        <a href="{{route('users')}}">Users Details</a>
     </nav>
     <h1>Wlcome to laravel Learning Academy</h1>
 </body>

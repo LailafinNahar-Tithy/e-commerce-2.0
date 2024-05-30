@@ -6,7 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
+<body><nav>
+    <a href="{{url('/home')}}">Home</a>
+    <a href="{{url('/contact')}}">Contact us</a>
+    <a href="{{route('about')}}">About us</a>
+    <a href="{{route('users')}}">Users Details</a>
+</nav>
     <h1>This is contact page</h1>
 </body>
 </html>
