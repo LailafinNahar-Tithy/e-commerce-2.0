@@ -10,4 +10,9 @@ class ProductController extends Controller
          return view ('admin.pages.products.index');
         //dd('product list dekhabe');
     }
+
+    public function create(){
+        return view ('admin.pages.products.create');
+
+   }
 }

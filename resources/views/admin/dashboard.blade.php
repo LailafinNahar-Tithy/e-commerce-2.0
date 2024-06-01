@@ -1,4 +1,7 @@
 @extends('admin.layout.master');
+@section('title','Home')
+
+
 @section('content')
 <main>
     <div class="container-fluid px-4">
