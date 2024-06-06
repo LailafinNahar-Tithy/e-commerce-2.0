@@ -15,41 +15,45 @@
 
 
     <div class="card-body">
-        <form>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                        <label for="inputFirstName">First name</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                        <label for="inputLastName">Last name</label>
-                    </div>
-                </div>
+
+        @if ($errors->any())
+           <div class="alert alert-danger">
+               <ul>
+                  @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+    </div>
+        @endif
+
+        <form action="{{route('products.store')}}" method="POST">
+            @csrf
+
+            <div class="form-floating mb-3 ">
+                <input class="form-control" id="title" name="title" type="text" placeholder="Enter your product title" />
+                <label for="title">Title</label>
+            </div>
+
+
+            <div class="form-floating mb-3">
+                <input class="form-control" id="price" name="price" type="number" placeholder="enter price" />
+                <label for="price">Price</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                <label for="inputEmail">Email address</label>
+                <textarea class="form-control" id="description" name="description" ></textarea>
+                <label for="description">Description</label>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                        <label for="inputPassword">Password</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                        <label for="inputPasswordConfirm">Confirm Password</label>
-                    </div>
-                </div>
-            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="is_active" value="1" type="checkbox" value="" id="isActive" checked>
+                <label class="form-check-label" for="isActive">
+                  Is Active
+                </label>
+              </div>
+
             <div class="mt-4 mb-0">
-                <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
+                <div class="d-grid">
+                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                </div>
             </div>
         </form>
     </div>

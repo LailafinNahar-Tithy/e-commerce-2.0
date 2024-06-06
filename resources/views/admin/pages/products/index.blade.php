@@ -15,7 +15,7 @@
             Products <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary">Add new</a>
         </div>
         <div class="card-body">
-            <table id="table table-striped">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -28,7 +28,7 @@
                 <tbody>
                     @foreach ($products as $product )
                     <tr>
-                        <td></td>
+                        
                         <td>{{$product->title}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->is_active}}</td>
@@ -40,7 +40,7 @@
 
                 </tbody>
             </table>
-            {{-- {{ $products->links() }} --}}
+            {{ $products->links() }}
         </div>
     </div>
 </div>
