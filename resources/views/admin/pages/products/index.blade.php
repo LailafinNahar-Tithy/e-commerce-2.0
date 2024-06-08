@@ -15,12 +15,17 @@
             Products <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary">Add new</a>
         </div>
         <div class="card-body">
+            @if (session('status'))
+            <div class="alert alert-success">{{session('status')}}</div>
+
+            @endif
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Price</th>
                         <th>status</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -28,10 +33,13 @@
                 <tbody>
                     @foreach ($products as $product )
                     <tr>
-                        
+
                         <td>{{$product->title}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->is_active}}</td>
+                        <td>
+                            <a href="{{route('products.edit',['id'=>$product->id])}}">Edit</a>
+                        </td>
 
                     </tr>
 

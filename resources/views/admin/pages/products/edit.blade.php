@@ -26,11 +26,11 @@
     </div>
         @endif
 
-        <form action="{{route('products.store')}}" method="POST">
+        <form action="{{route('products.update',['id'=>$product->id])}}" method="POST">
             @csrf
-
+            @method('patch')
             <div class="form-floating mb-3 ">
-                <input class="form-control" id="title" name="title" type="text" placeholder="Enter your product title" value="{{old('title')}}" />
+                <input class="form-control" id="title" name="title" type="text" placeholder="Enter your product title" value="{{old('title',$product->title)}}" />
                 <label for="title">Title</label>
             </div>
                 @error('title')
@@ -38,14 +38,14 @@
                 @enderror
 
             <div class="form-floating mb-3">
-                <input class="form-control" id="price" name="price" type="number" placeholder="enter price" value="{{old('price')}}" />
+                <input class="form-control" id="price" name="price" type="number" placeholder="enter price" value="{{old('price',$product->price)}}" />
                 <label for="price">Price</label>
             </div>
             @error('price')
                    <div class="alert alert-danger">{{$message}}</div>
             @enderror
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="description" name="description" value="{{old('description')}}"></textarea>
+                <textarea class="form-control" id="description" name="description" value="{{old('description',$product->description)}}"></textarea>
                 <label for="description">Description</label>
             </div>
             @error('description')
