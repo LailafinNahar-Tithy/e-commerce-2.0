@@ -41,6 +41,11 @@ class ProductController extends Controller
           //dd($request->all());
 
 }
+public function show($id){
+    $product= Product::findOrFail($id);
+    return view ('admin.pages.products.show',compact('product'));
+
+}
     public function edit($id){
         $product= Product::findOrFail($id);
         return view('admin.pages.products.edit',compact('product'));
@@ -58,7 +63,7 @@ class ProductController extends Controller
                 'description'=>$request->description,
                 'is_active'=>$request->is_active ?? 0
             ]);
-            
+
             return redirect()->route('products.index')->withstatus('data Updated successfully') ;
 
         }catch(QueryException $e){
@@ -68,5 +73,9 @@ class ProductController extends Controller
 
           //dd($request->all());
 
+}
+public function destroy($id){
+ Product::destroy($id);
+ return redirect()->route('products.index')->withstatus('data deleted successfully') ;
 }
 }

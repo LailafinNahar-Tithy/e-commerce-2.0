@@ -38,7 +38,16 @@
                         <td>{{$product->price}}</td>
                         <td>{{$product->is_active}}</td>
                         <td>
-                            <a href="{{route('products.edit',['id'=>$product->id])}}">Edit</a>
+
+                            <a class="btn btn-sm btn-info" href="{{route('products.show',['id'=>$product->id])}}">Show</a>
+                            <a class="btn btn-sm btn-warning" href="{{route('products.edit',['id'=>$product->id])}}">Edit</a>
+
+                                <form action="{{route('products.destroy',['id'=>$product->id])}}" method="POST"  style="display:inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+
                         </td>
 
                     </tr>
