@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\QueryException;
 use App\Http\Requests\ProductRequest ;
+use Image;
 
 class ProductController extends Controller
 {
@@ -21,6 +25,8 @@ class ProductController extends Controller
 
    }
    public function store(ProductRequest $request){
+    $imageName = time().'.'.$request->image->extension();
+    $request->image->storeAs('public/images', $imageName);
 
 
         try{
@@ -28,7 +34,8 @@ class ProductController extends Controller
                 'title'=>$request->title,
                 'price'=>$request->price,
                 'description'=>$request->description,
-                'is_active'=>$request->is_active ?? 0
+                'is_active'=>$request->is_active ?? 0,
+                'image'=> $imageName
 
             ]);
             return redirect()->route('products.index')->withstatus('data inserted successfully') ;
@@ -57,11 +64,17 @@ public function show($id){
 
         try{
             $product= Product::findOrFail($id);
+
+            if($request->hasFile('image')){
+                $imageName = time().'.'.$request->image->extension();
+                $request->image->storeAs('public/images', $imageName);
+            }
             $product->update([
                 'title'=>$request->title,
                 'price'=>$request->price,
                 'description'=>$request->description,
-                'is_active'=>$request->is_active ?? 0
+                'is_active'=>$request->is_active ?? 0 ,
+                'image'=> $imageName ?? $product->image
             ]);
 
             return redirect()->route('products.index')->withstatus('data Updated successfully') ;

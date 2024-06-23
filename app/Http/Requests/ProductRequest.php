@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
@@ -21,10 +22,21 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $imageValidateRule =null;
+        if(isset($this->product)) {
+            $imageValidateRule ='image|mimes:png,jpg,jpeg,webp|max:2048';
+        }else{
+            $imageValidateRule ='required|'. $imageValidateRule;
+        }
         return [
-        'title' => 'required|min:5|unique:products',
+        'title' => [
+            'required' ,
+            Rule::unique("products")->ignore($this->product?->id),
+
+        ],
         'price'=>'required',
-        'description'=>'required'
+        'description'=>'required' ,
+        'image' =>  $imageValidateRule 
 
         ];
     }

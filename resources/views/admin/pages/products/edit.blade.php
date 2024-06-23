@@ -26,7 +26,7 @@
     </div>
         @endif
 
-        <form action="{{route('products.update',['id'=>$product->id])}}" method="POST">
+        <form action="{{route('products.update',['id'=>$product->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="form-floating mb-3 ">
@@ -51,6 +51,18 @@
             @error('description')
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
+
+            <img src="{{ asset('./storage/images/' . $product->image) }}" class="card-img-top" alt="...">
+
+            <div class="form-floating mb-3">
+                <input type="file" class="form-control" accept="image/*" name="image" id="image" accept="image/*">
+                <label for="image">Upload Image</label>
+            </div>
+            @error('image')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+
             <div class="form-check">
                 <input class="form-check-input" name="is_active" value="1" type="checkbox" value="" id="isActive" checked>
                 <label class="form-check-label" for="isActive">

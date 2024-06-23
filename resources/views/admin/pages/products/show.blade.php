@@ -15,7 +15,7 @@
             Products <a href="{{route('products.index')}}" class="btn btn-sm btn-outline-primary">List</a>
         </div>
         <div class="card-body">
-
+            <img src="{{ asset('./storage/images/' . $product->image) }}" class="card-img-top" alt="...">
 
            <h1>Title:{{$product->title}}</h1>
            <p>Price:{{$product->price}}</p>

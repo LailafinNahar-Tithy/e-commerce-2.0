@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Dhaka',
 
     /*
     |--------------------------------------------------------------------------
@@ -182,6 +182,10 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
+
+       // Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -209,6 +213,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        //'Image' => Intervention\Image\Facades\Image::class
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
