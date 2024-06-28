@@ -156,6 +156,9 @@ return [
 
     'providers' => [
 
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -181,6 +184,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+       
+
+
 
 
 
@@ -215,6 +221,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         //'Image' => Intervention\Image\Facades\Image::class
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Pdf' => Barryvdh\DomPDF\Facade::class,
+
     ])->toArray(),
 
 ];

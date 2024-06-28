@@ -12,7 +12,13 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Products <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary">Add new</a>
+            Products
+            <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary">Add new</a>
+            <a href="{{route('products.trash')}}" class="btn btn-sm btn-outline-primary">trash</a>
+            <a href="{{route('products.Pdf')}}" class="btn btn-sm btn-outline-success">PDF</a>
+
+
+
         </div>
         <div class="card-body">
             @if (session('status'))
