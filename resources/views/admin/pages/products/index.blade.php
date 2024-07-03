@@ -14,7 +14,10 @@
             <i class="fas fa-table me-1"></i>
             Products
             <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary">Add new</a>
-            <a href="{{route('products.trash')}}" class="btn btn-sm btn-outline-primary">trash</a>
+            @can('product-trash-list')
+            <a href="{{route('products.trash')}}" class="btn btn-sm btn-outline-primary">Trash_List</a>
+            @endcan
+
             <a href="{{route('products.Pdf')}}" class="btn btn-sm btn-outline-success">PDF</a>
 
 
@@ -48,11 +51,17 @@
                             <a class="btn btn-sm btn-info" href="{{route('products.show',['id'=>$product->id])}}">Show</a>
                             <a class="btn btn-sm btn-warning" href="{{route('products.edit',['id'=>$product->id])}}">Edit</a>
 
-                                <form action="{{route('products.destroy',['id'=>$product->id])}}" method="POST"  style="display:inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+
+                                @can('delete-product')
+
+                                    <form action="{{route('products.destroy',['id'=>$product->id])}}" method="POST"  style="display:inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+
+                                @endcan
+
 
                         </td>
 

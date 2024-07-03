@@ -113,7 +113,7 @@ public function destroy($id){
 //trash
 public function trash(){
 
-
+    $this->authorize('product-trash-list');
     $products = Product::latest()->onlyTrashed()->paginate(10);
 
 
