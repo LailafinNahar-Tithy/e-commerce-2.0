@@ -34,6 +34,7 @@
                         <th>Title</th>
                         <th>Price</th>
                         <th>status</th>
+                        <th>Category</th>
                         <th>Action</th>
 
                     </tr>
@@ -46,6 +47,7 @@
                         <td>{{$product->title}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->is_active}}</td>
+                        <td>{{ optional($product->category)->title }}</td>
                         <td>
 
                             <a class="btn btn-sm btn-info" href="{{route('products.show',['id'=>$product->id])}}">Show</a>

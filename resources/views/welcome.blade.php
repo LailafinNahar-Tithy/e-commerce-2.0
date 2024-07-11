@@ -20,7 +20,7 @@
 
 
 
-<x-layout :categories="$categories" >
+{{-- <x-layout :categories="$categories" > --}}
 
     <x-slot:title>
         E-Shop | Dashboard
@@ -40,7 +40,7 @@
                     <h5 class="card-text">Price: {{$product->price}}</h5>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a  type="button" class="btn btn-sm btn-outline-secondary" href="{{route('product.details',$product->slug)}}">View</a>
+                            <a  type="button" class="btn btn-sm btn-outline-secondary" href="#">View</a>
 
                         </div>
                         <small class="text-muted">9 mins</small>
@@ -50,7 +50,10 @@
         </div>
         @endforeach
 
+        <div class="d-flex">
+            {{ $products->links() }}
+        </div>
 
 
       </div>
-</x-layout>
+{{-- </x-layout> --}}

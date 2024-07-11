@@ -20,10 +20,11 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [PublicController::class,'welcome'])->name('welcome');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
+Route::get('/{id}', [PublicController::class,'CategoryWiseProducts'])->name('category.products');
 
 
 Route::middleware('auth')->prefix('admin')->group(function(){

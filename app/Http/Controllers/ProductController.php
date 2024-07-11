@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function index(){
          //$products= Product::all();
          //$products = Product::orderBy('created_at','desc')->paginate(10);
-         $products = Product::latest()->paginate(10);
+         $products = Product::with('category')->latest()->paginate(10);
          return view ('admin.pages.products.index',compact('products'));
         //dd('product list dekhabe');
     }
