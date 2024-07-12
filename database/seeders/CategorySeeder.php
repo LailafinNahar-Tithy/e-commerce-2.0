@@ -16,17 +16,17 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'id'=> 1,
-                //'slug' => 'mobile',
+                'slug' => 'mobile',
                 'title'=> 'Mobile'
             ],
             [
                 'id'=> 2,
-                //'slug' => 'laptop',
+                'slug' => 'laptop',
                 'title'=> 'Laptop'
             ],
             [
                 'id'=> 3,
-                //'slug' => 'others',
+                'slug' => 'others',
                 'title'=> 'Others'
             ]
             ];

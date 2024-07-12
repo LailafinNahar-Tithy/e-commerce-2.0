@@ -11,17 +11,16 @@ class PublicController extends Controller
 {
     public function welcome(){
         $products = Product::latest()->paginate(12);
-        $categories = Category::pluck('title','id')->toArray();
-
+        $categories = Category::pluck('title','slug')->toArray();
 
         return view('welcome',compact('products','categories'));
     }
 
-    public function CategoryWiseProducts($categoryId)
+    public function CategoryWiseProducts($slug)
     {
-        $category = Category::findOrFail($categoryId);
+        $category = Category::where('slug',$slug)->firstOrFail();
         $products = $category->products()->paginate(10);
-        $categories = Category::pluck('title','id')->toArray();
+        $categories = Category::pluck('title','slug')->toArray();
 
         return view('category_wise_product',compact('products','categories'));
     }
@@ -40,5 +39,14 @@ class PublicController extends Controller
        //dd($user);
        return view('users',['users'=>$allUser]);
         // return view ('');
+     }
+
+
+     public function productDetails($slug){
+        $product= Product::where('slug', $slug)->firstOrFail();
+     //    dd($product);
+        $categories = Category::pluck('title','slug')->toArray();
+        return view('product_details',compact('product','categories'));
+
      }
 }

@@ -18,9 +18,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         $categories = [1,2,3];
-       // $title = fake()->unique()->realText(100);
+        $title = fake()->unique()->realText(100);
         return [
-            'title'=>fake()->realText(100),
+            'title'=>$title,
+            'slug' => str::slug($title),
             'description'=>fake()->paragraph(),
             'price'=>rand(100,10000),
             'is_active'=>true,

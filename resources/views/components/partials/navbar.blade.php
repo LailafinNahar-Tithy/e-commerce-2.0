@@ -17,18 +17,18 @@
                 Category
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                @foreach ($categories as $categoryId => $categoryTitle )
+                @foreach ($categories as $slug => $title )
 
-                <li><a class="dropdown-item" href="{{route('category.products',$categoryId )}}">{{$categoryTitle}}</a></li>
+                <li><a class="dropdown-item" href="{{route('category.products',$slug)}}">{{$title}}</a></li>
 
                 @endforeach
             </ul>
           </li>
           <li class="nav-item">
-            @auth
+            {{-- @auth
 
             <a class="nav-link " href="{{route('cart.products')}}" tabindex="-1">Cart({{count(auth()->user()->cartProducts)}})</a>
-            @endauth
+            @endauth --}}
           </li>
         </ul>
         <form class="d-flex">

@@ -20,7 +20,7 @@
 
 
 
-{{-- <x-layout :categories="$categories" > --}}
+<x-layout :categories="$categories" >
 
     <x-slot:title>
         E-Shop | Dashboard
@@ -56,4 +56,4 @@
 
 
       </div>
-{{-- </x-layout> --}}
+</x-layout>
