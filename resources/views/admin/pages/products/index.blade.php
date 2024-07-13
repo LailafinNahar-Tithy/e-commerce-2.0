@@ -54,7 +54,7 @@
                             <a class="btn btn-sm btn-warning" href="{{route('products.edit',['id'=>$product->id])}}">Edit</a>
 
 
-                                @can('delete-product')
+                                {{-- @can('delete-product') --}}
 
                                     <form action="{{route('products.destroy',['id'=>$product->id])}}" method="POST"  style="display:inline">
                                         @csrf
@@ -62,7 +62,7 @@
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                     </form>
 
-                                @endcan
+                                {{-- @endcan --}}
 
 
                         </td>
