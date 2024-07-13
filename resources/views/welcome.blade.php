@@ -22,6 +22,7 @@
 
 <x-layout :categories="$categories" >
 
+
     <x-slot:title>
         E-Shop | Dashboard
     </x-slot>
