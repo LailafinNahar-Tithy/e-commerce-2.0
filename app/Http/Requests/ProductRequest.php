@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
             $imageValidateRule ='required|'. $imageValidateRule;
         }
         return [
+        'category_id' => 'required|exists:categories,id',
         'title' => [
             'required' ,
             Rule::unique("products")->ignore($this->product?->id),
@@ -36,7 +37,7 @@ class ProductRequest extends FormRequest
         ],
         'price'=>'required',
         'description'=>'required' ,
-        'image' =>  $imageValidateRule 
+        'image' =>  $imageValidateRule
 
         ];
     }

@@ -30,36 +30,69 @@
             @csrf
 
             <div class="form-floating mb-3 ">
+            {{-- //<select id="category_id" name="catagory_id" class="form-control"> --}}
+                    <select id="category_id" name="category_id" class="form-control">
+
+                    <option value="">Select Category</option>
+
+                    @foreach ($categories as $categoryId => $categorytitle)
+
+                    <option value="{{$categoryId}}">{{$categorytitle}} </option>
+                    @endforeach
+
+                </select>
+                <label for="category_id">Category</label>
+
+                @error('category_id')
+                   <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+            </div>
+
+
+            <div class="form-floating mb-3 ">
                 <input class="form-control" id="title" name="title" type="text" placeholder="Enter your product title" value="{{old('title')}}" />
                 <label for="title">Title</label>
-            </div>
+
                 @error('title')
                    <div class="alert alert-danger">{{$message}}</div>
                 @enderror
+            </div>
+
 
             <div class="form-floating mb-3">
                 <input class="form-control" id="price" name="price" type="number" placeholder="enter price" value="{{old('price')}}" />
                 <label for="price">Price</label>
-            </div>
-            @error('price')
+                @error('price')
                    <div class="alert alert-danger">{{$message}}</div>
             @enderror
+            </div>
+
             <div class="form-floating mb-3">
                 <textarea class="form-control" id="description" name="description" value="{{old('description')}}"></textarea>
                 <label for="description">Description</label>
+                @error('description')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+
             </div>
-            @error('description')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
 
             <div class="form-floating mb-3">
                 <input type="file" class="form-control" accept="image/*" name="image" id="image" accept="image/*">
                 <label for="image">Upload Image</label>
+                @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('image')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
 
+            <label for="color">Color</label>
+                    @foreach ($colors as $colorId=>$colorName)
+
+                    <div class="form-check">
+                        <input class="form-check-input" name="color_id[]" value="{{$colorId}}" type="checkbox"  id="{{$colorId}}" >
+                        <label class="form-check-label" for="{{$colorId}}"> {{$colorName}} </label>
+                    </div>
+                    @endforeach
+                    <br> <br>
 
             <div class="form-check">
                 <input class="form-check-input" name="is_active" value="1" type="checkbox" value="" id="isActive" checked>
@@ -67,6 +100,7 @@
                   Is Active
                 </label>
               </div>
+
 
             <div class="mt-4 mb-0">
                 <div class="d-grid">

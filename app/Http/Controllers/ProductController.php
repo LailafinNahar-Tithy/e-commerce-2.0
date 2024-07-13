@@ -39,16 +39,21 @@ class ProductController extends Controller
     }
 
     public function create(){
-        return view ('admin.pages.products.create');
+        $categories = Category::pluck('title','id')->toArray();
+        $colors = Color::pluck('name','id')->toArray();
+        //dd($categories);
+        return view ('admin.pages.products.create',compact('categories','colors'));
 
    }
    public function store(ProductRequest $request){
+    // dd($request->all());
     $imageName = time().'.'.$request->image->extension();
     $request->image->storeAs('public/images', $imageName);
 
 
         try{
-            Product::create([
+           $products= Product::create([
+                'category_id' => $request->category_id,
                 'title'=>$request->title,
                 'slug' => Str::slug($request->title),
                 'price'=>$request->price,
@@ -57,6 +62,8 @@ class ProductController extends Controller
                 'image'=> $imageName
 
             ]);
+            $products->colors()->attach($request->color_id);
+
             return redirect()->route('products.index')->withstatus('data inserted successfully') ;
 
         }catch(QueryException $e){
