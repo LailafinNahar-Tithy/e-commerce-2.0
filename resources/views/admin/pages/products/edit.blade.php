@@ -29,6 +29,29 @@
         <form action="{{route('products.update',['id'=>$product->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('patch')
+
+            <div class="form-floating mb-3 ">
+                {{-- //<select id="category_id" name="catagory_id" class="form-control"> --}}
+                        <select id="category_id" name="category_id" class="form-control">
+
+                        <option value="">Select Category</option>
+
+                        @foreach ($categories as $categoryId => $categorytitle)
+
+                        <option value="{{$categoryId}}" @if ($product->category_id==$categoryId ) selected
+
+                        @endif>{{$categorytitle}} </option>
+                        {{-- <option value="{{ $categoryId }}" {{ old('category_id', $selectedCategory) == $categoryId ? 'selected' : '' }}>{{$categorytitle}} </option> --}}
+
+                        @endforeach
+
+                    </select>
+                    <label for="category_id">Category</label>
+
+                    @error('category_id')
+                       <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
             <div class="form-floating mb-3 ">
                 <input class="form-control" id="title" name="title" type="text" placeholder="Enter your product title" value="{{old('title',$product->title)}}" />
                 <label for="title">Title</label>
@@ -61,6 +84,20 @@
             @error('image')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+            <label for="color">Color</label>
+            @foreach ($colors as $colorId=>$colorName)
+
+            <div class="form-check">
+                <input class="form-check-input" name="color_id[]" value="{{$colorId}}" type="checkbox"  id="{{$colorId}}"
+                @if (in_array($colorId, $selectedColors))
+                           checked
+                        @endif >
+
+
+                <label class="form-check-label" for="{{$colorId}}"> {{$colorName}} </label>
+            </div>
+            @endforeach
+
 
 
             <div class="form-check">

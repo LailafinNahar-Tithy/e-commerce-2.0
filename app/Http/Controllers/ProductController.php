@@ -81,7 +81,12 @@ public function show($id){
 }
     public function edit($id){
         $product= Product::findOrFail($id);
-        return view('admin.pages.products.edit',compact('product'));
+        $colors = Color::pluck('name','id')->toArray();
+        $categories = Category::pluck('title','id')->toArray();
+        $selectedColors = $product->colors()->pluck('id')->toArray();
+        //dd( $selectedColors);
+        //return view('admin.pages.products.edit',compact('product','colors'));
+        return view('admin.pages.products.edit',compact('product','colors','selectedColors','categories'));
 
     }
 
@@ -103,6 +108,9 @@ public function show($id){
                 'is_active'=>$request->is_active ?? 0 ,
                 'image'=> $imageName ?? $product->image
             ]);
+
+            $product->colors()->sync($request->color_id);
+
 
             return redirect()->route('products.index')->withstatus('data Updated successfully') ;
 

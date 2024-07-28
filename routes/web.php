@@ -8,6 +8,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/products/{id}/restore', [ProductController::class, 'restore'])->name('products.restore');
     Route::delete('/products/{id}/delete', [ProductController::class, 'delete'])->name('products.delete');
     Route::get('/products/downloadPdf',[ProductController::class,'downloadPdf'])->name('products.Pdf');
+
+    //cart
+    Route::post('/add-to-cart', [CartController::class,'store'])->name('cart.store');
 });
 
 require __DIR__.'/auth.php';
