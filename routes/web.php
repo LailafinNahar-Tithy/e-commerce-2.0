@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
     //cart
     Route::post('/add-to-cart', [CartController::class,'store'])->name('cart.store');
+    Route::get('/cart-products', [CartController::class,'index'])->name('cart.products');
 });
 
 require __DIR__.'/auth.php';
