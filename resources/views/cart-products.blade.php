@@ -3,7 +3,7 @@
         E-Shop | Cart Products
     </x-slot:title>
 
-    <form action="#" method="POST">
+    <form action="{{route('orders.store')}}" method="POST">
         @csrf
         <table class="table table-striped">
             <thead>
