@@ -11,4 +11,9 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded =[];
+
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

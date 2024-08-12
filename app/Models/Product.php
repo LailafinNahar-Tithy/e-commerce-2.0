@@ -18,4 +18,12 @@ class Product extends Model
       public function colors(){
         return $this->belongsToMany(Color::class);
     }
+
+     /**
+     * Get all of the post's comments.
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

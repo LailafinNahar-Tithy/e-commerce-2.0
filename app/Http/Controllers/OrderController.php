@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\User;
-//use App\Notifications\OrderConfirmed;
+use App\Notifications\OrderConfirmed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,13 +54,23 @@ class OrderController extends Controller
        $notifiableUser = User::where('role_id',1)->get();
        foreach($notifiableUser as $user){
 
-           //$user->notify(new OrderConfirmed($order));
+           $user->notify(new OrderConfirmed($order));
        }
 
 
 
         DB::commit();
         return redirect()->route('orders.confirmed');
+    }
+    public function show($id){
+        $order = Order::findOrFail($id);
+
+        $notificaton = auth()->user()->unreadNotifications()->where('id',request('notification_id'))->first();
+        if($notificaton){
+
+            $notificaton->markAsRead();
+        }
+        return view('admin.pages.orders.show',compact('order'));
     }
 
     public function confirmed(){

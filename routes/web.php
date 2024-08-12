@@ -69,6 +69,7 @@ Route::patch('/products/{id}',[ProductController::class,'update'])->name('produc
 Route::delete('/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');
 
 Route::post('orders',[OrderController::class,'store'])->name('orders.store');
+Route::get('orders/{id}',[OrderController::class,'show'])->name('orders.show');
 Route::get('orders-success',[OrderController::class,'confirmed'])->name('orders.confirmed');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
